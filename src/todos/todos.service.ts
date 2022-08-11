@@ -1,29 +1,27 @@
 import { Injectable } from '@nestjs/common';
-import { Todos } from './todos.entity';
-import { ITodos } from './todos.interface';
+import { ITodo } from './todos.interface';
 
 @Injectable()
 export class TodosService {
-  private todos: ITodos[] = [
+  private todos: ITodo[] = [
     {
       id: '1',
       title: 'Test Todo',
     },
   ];
 
-  getTodos(): ITodos[] {
+  getTodos(): ITodo[] {
     return this.todos;
   }
 
-  addTodo({ id, title }: ITodos): ITodos {
-    const NewTodo = new Todos(id, title);
-
+  addTodo({ id, title }: ITodo): ITodo {
+    const NewTodo: ITodo = { id, title };
     this.todos.push(NewTodo);
 
     return NewTodo;
   }
 
-  deleteTodo(id: string): ITodos[] {
+  deleteTodo(id: string): ITodo[] {
     return (this.todos = this.todos.filter((todo) => todo.id !== id));
   }
 }

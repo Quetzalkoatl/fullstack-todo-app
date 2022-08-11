@@ -1,6 +1,6 @@
 import { Controller, Body, Get, Post, Delete, Param } from '@nestjs/common';
 
-import { ITodos } from './todos.interface';
+import { ITodo } from './todos.interface';
 import { TodosService } from './todos.service';
 
 @Controller('todos')
@@ -8,17 +8,17 @@ export class TodosController {
   constructor(private todosService: TodosService) {}
 
   @Get()
-  getTodos(): ITodos[] {
+  getTodos(): ITodo[] {
     return this.todosService.getTodos();
   }
 
   @Post('post')
-  addTodo(@Body() todo: ITodos): ITodos {
+  addTodo(@Body() todo: ITodo): ITodo {
     return this.todosService.addTodo(todo);
   }
 
   @Delete('delete/:id')
-  deleteTodo(@Param('id') id: string): ITodos[] {
+  deleteTodo(@Param('id') id: string): ITodo[] {
     return this.todosService.deleteTodo(id);
   }
 }
