@@ -1,6 +1,6 @@
 import {useDispatch} from 'react-redux';
 
-import {removeTodo} from '../store/todo/TodoSlice';
+import {deleteTodo} from '../store/todo/TodoSlice';
 
 const TodoItem = ({id, title}) => {
 	const dispatch = useDispatch();
@@ -10,7 +10,7 @@ const TodoItem = ({id, title}) => {
 			<h4>{title}</h4>
 			<button
 				style={{height: '30px', alignSelf: 'center', marginLeft: '15px'}}
-				onClick={() => dispatch(removeTodo(id))}
+				onClick={() => dispatch(deleteTodo(id))}
 			>
 				Delete
 			</button>
