@@ -4,7 +4,12 @@ import { ITodos } from './todos.interface';
 
 @Injectable()
 export class TodosService {
-  private todos: ITodos[] = [];
+  private todos: ITodos[] = [
+    {
+      id: '1',
+      title: 'Test Todo',
+    },
+  ];
 
   getTodos(): ITodos[] {
     return this.todos;
