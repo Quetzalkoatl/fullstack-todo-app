@@ -23,19 +23,17 @@ function App() {
 
 	return (
 		<>
-			{todos.status === 'fulfilled' && (
-				<div>
-					<TodoInput
-						handleSubmit={addNewTodo}
-						title={title}
-						handleInput={setTitle}
-					/>
-					<TodoList />
-				</div>
-			)}
+			<TodoInput
+				handleSubmit={addNewTodo}
+				title={title}
+				handleInput={setTitle}
+			/>
+			<TodoList />
+
 			{todos.status === 'loading' && (
 				<h2 style={{marginLeft: '20px'}}>Loading...</h2>
 			)}
+
 			{todos.error && (
 				<h2 style={{marginLeft: '20px'}}>Error: {todos.error}</h2>
 			)}

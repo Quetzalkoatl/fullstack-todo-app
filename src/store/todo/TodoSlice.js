@@ -5,9 +5,7 @@ export const fetchTodos = createAsyncThunk(
 	'todos/fetchTodos',
 	async function (_, {rejectWithValue}) {
 		try {
-			const response = await fetch(
-				'https://jsonplaceholder.typicode.com/todos?_limit=10'
-			);
+			const response = await fetch('http://localhost:4000/todos/');
 
 			if (!response.ok) {
 				throw new Error('Cant fetch todos');
@@ -24,29 +22,27 @@ export const fetchTodos = createAsyncThunk(
 
 export const createTodo = createAsyncThunk(
 	'todos/createTodo',
-	async function (title, {rejectWithValue, dispatch}) {
+	async function (text, {rejectWithValue, dispatch}) {
 		try {
 			const todo = {
 				id: nextId(),
-				title,
+				title: text,
 			};
 
-			const response = await fetch(
-				'https://jsonplaceholder.typicode.com/todos',
-				{
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					body: JSON.stringify(todo),
-				}
-			);
+			const response = await fetch('http://localhost:4000/todos/post/', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(todo),
+			});
 
 			if (!response.ok) {
 				throw new Error('Cant add todo');
 			}
 
 			const data = await response.json();
+
 			dispatch(addTodo(data));
 		} catch (error) {
 			return rejectWithValue(error.message);
@@ -58,12 +54,9 @@ export const deleteTodo = createAsyncThunk(
 	'todos/removeTodo',
 	async function (id, {rejectWithValue, dispatch}) {
 		try {
-			const response = await fetch(
-				`https://jsonplaceholder.typicode.com/todos/${id}`,
-				{
-					method: 'DELETE',
-				}
-			);
+			const response = await fetch(`http://localhost:4000/todos/delete/${id}`, {
+				method: 'DELETE',
+			});
 
 			if (!response.ok) {
 				throw new Error('Cant delete todo');
