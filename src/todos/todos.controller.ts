@@ -8,17 +8,17 @@ export class TodosController {
   constructor(private todosService: TodosService) {}
 
   @Get()
-  getTodos(): ITodo[] {
+  getTodos(): Promise<ITodo[]> {
     return this.todosService.getTodos();
   }
 
   @Post('post')
-  addTodo(@Body() todo: ITodo): ITodo {
+  addTodo(@Body() todo: ITodo) {
     return this.todosService.addTodo(todo);
   }
 
   @Delete('delete/:id')
-  deleteTodo(@Param('id') id: string): ITodo[] {
+  deleteTodo(@Param('id') id: string) {
     return this.todosService.deleteTodo(id);
   }
 }
