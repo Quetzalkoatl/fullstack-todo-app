@@ -1,5 +1,5 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
-import nextId from 'react-id-generator';
+// import nextId from 'react-id-generator';
 
 export const fetchTodos = createAsyncThunk(
 	'todos/fetchTodos',
@@ -25,7 +25,6 @@ export const createTodo = createAsyncThunk(
 	async function (text, {rejectWithValue, dispatch}) {
 		try {
 			const todo = {
-				id: nextId(),
 				title: text,
 			};
 
